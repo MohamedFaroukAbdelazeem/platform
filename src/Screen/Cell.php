@@ -13,7 +13,7 @@ use Orchid\Support\Blade;
 
 abstract class Cell
 {
-    use Macroable, CanSee;
+    use CanSee, Macroable;
 
     /**
      * @var string
@@ -52,7 +52,7 @@ abstract class Cell
     /**
      * @return static
      */
-    public static function make(string $name = '', string $title = null): static
+    public static function make(string $name = '', ?string $title = null): static
     {
         $td = new static($name);
         $td->column = $name;
@@ -117,13 +117,27 @@ abstract class Cell
     }
 
     /**
-     * Pass the entire string to the component
+     * Renders the component with optional parameters.
      *
+     * @param string $component The component to render.
+     * @param mixed  ...$params Optional parameters for the component.
      *
      * @return $this
      */
-    public function component(string $component, array $params = []): static
+    public function component(string $component, ...$params): static
     {
+        /** Backward compatibility workaround.
+         *
+         *  This block enables backward compatibility with previous versions
+         *  where passing parameters as an array was supported.
+         *
+         *  Example usage:
+         *  TD::make()->component(Any::class, ['param' => 'value'])
+         */
+        if (Arr::isList($params) && count($params) > 0) {
+            $params = Arr::first($params);
+        }
+
         return $this->render(fn ($value) => $this->renderComponent($component, $value, $params));
     }
 
@@ -159,7 +173,7 @@ abstract class Cell
      *
      * @return mixed
      */
-    protected function handler($source, object $loop = null)
+    protected function handler($source, ?object $loop = null)
     {
         $callback = $this->render;
 

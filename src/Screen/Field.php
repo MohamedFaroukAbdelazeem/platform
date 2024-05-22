@@ -34,7 +34,7 @@ use Throwable;
  */
 class Field implements Fieldable, Htmlable
 {
-    use CanSee, Makeable, Conditionable, Macroable {
+    use CanSee, Conditionable, Macroable, Makeable {
         Macroable::__call as macroCall;
     }
 
@@ -301,9 +301,11 @@ class Field implements Fieldable, Htmlable
 
     public function getOldName(): string
     {
-        return (string) Str::of($this->get('name'))
+        return Str::of($this->get('name'))
             ->replace(['][', '['], '.')
-            ->replace([']'], '')->rtrim('.');
+            ->replace([']'], '')
+            ->rtrim('.')
+            ->toString();
     }
 
     /**

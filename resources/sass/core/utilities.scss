@@ -1,3 +1,10 @@
+.line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .show {
   visibility: visible;
 }
@@ -585,6 +592,10 @@
     cursor: wait;
 }
 
+.cursor-move {
+    cursor: move;
+}
+
 .pull-left {
     float: left;
 }
@@ -615,5 +626,9 @@
 }
 
 .content-read {
-    max-width: 600px;
+    max-width: 680px;
+}
+
+.text-balance {
+    text-wrap: balance;
 }

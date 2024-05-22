@@ -20,21 +20,16 @@ trait Attachable
      *
      * @return MorphToMany
      */
-    public function attachment(string $group = null): MorphToMany
+    public function attachment(?string $group = null): MorphToMany
     {
-        $query = $this->morphToMany(
+        return $this->morphToMany(
             Dashboard::model(Attachment::class),
             'attachmentable',
             'attachmentable',
             'attachmentable_id',
             'attachment_id'
-        );
-
-        if ($group !== null) {
-            $query->where('group', $group);
-        }
-
-        return $query
+        )
+            ->when($group !== null, fn ($query) => $query->where('group', $group))
             ->orderBy('sort');
     }
 }

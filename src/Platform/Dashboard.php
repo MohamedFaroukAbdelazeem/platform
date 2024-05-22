@@ -20,8 +20,10 @@ class Dashboard
 
     /**
      * ORCHID Version.
+     *
+     * @deprecated Use `Dashboard::version()` instead.
      */
-    public const VERSION = '14.6.0';
+    public const VERSION = '14.23.1';
 
     /**
      * @deprecated
@@ -145,7 +147,7 @@ class Dashboard
     /**
      * @return mixed
      */
-    public static function modelClass(string $key, string $default = null)
+    public static function modelClass(string $key, ?string $default = null)
     {
         $model = static::model($key, $default);
 
@@ -155,7 +157,7 @@ class Dashboard
     /**
      * Get the class name for a given Dashboard model.
      */
-    public static function model(string $key, string $default = null): string
+    public static function model(string $key, ?string $default = null): string
     {
         return Arr::get(static::$options, 'models.'.$key, $default ?? $key);
     }
@@ -368,7 +370,7 @@ class Dashboard
     public function addMenuSubElements(string $slug, array $list): Dashboard
     {
         $menu = $this->menu->get(self::MENU_MAIN)
-            ->map(fn (Menu $menu) => $menu->get('slug') === $slug
+            ->map(fn (Menu $menu) => $slug === $menu->get('slug')
                 ? $menu->list($list)
                 : $menu);
 

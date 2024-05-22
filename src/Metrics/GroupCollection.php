@@ -13,7 +13,7 @@ class GroupCollection extends Collection
      *
      * @return array A multidimensional array ready to be used in a chart.
      */
-    public function toChart(\Closure $closure = null): array
+    public function toChart(?\Closure $closure = null): array
     {
         // If the closure is not set, we define a default one that returns the original label.
         $closure = $closure ?? static fn ($label) => $label;
@@ -22,8 +22,8 @@ class GroupCollection extends Collection
             ->sortByDesc('value')
             ->pluck('label')
             ->map(fn (string $name) => [
-                'labels' => $this->pluck('label')->map($closure)->toArray(),
-                'values' => $this->getChartsValues($name),
+                'labels'  => $this->pluck('label')->map($closure)->toArray(),
+                'values'  => $this->getChartsValues($name),
             ])
             ->toArray();
     }

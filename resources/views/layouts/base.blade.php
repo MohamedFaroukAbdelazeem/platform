@@ -1,12 +1,12 @@
 @extends('platform::dashboard')
 
-@section('title', e(__($name)))
-@section('description', e(__($description)))
+@section('title', (string) __($name))
+@section('description', (string) __($description))
 @section('controller', 'base')
 
 @section('navbar')
     @foreach($commandBar as $command)
-        <li class="{{ !$loop->first ? 'ms-2' : ''}}">
+        <li>
             {!! $command !!}
         </li>
     @endforeach
@@ -18,7 +18,7 @@
     </div>
 
     <form id="post-form"
-          class="mb-md-4 overflow-hidden h-100"
+          class="mb-md-4 h-100"
           method="post"
           enctype="multipart/form-data"
           data-controller="form"

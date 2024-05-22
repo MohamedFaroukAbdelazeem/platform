@@ -17,7 +17,7 @@ class BaseScreenTesting extends Screen
     /**
      * Query data.
      */
-    public function query(User $user = null): array
+    public function query(?User $user = null): array
     {
         return [
             'user' => $user,
@@ -68,5 +68,20 @@ class BaseScreenTesting extends Screen
     public function getUser(Request $request)
     {
         return $request->user()->toJson();
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return void
+     */
+    public function methodWithValidation(Request $request): void
+    {
+        $request->validate([
+            'title' => 'required|max:255',
+            'body'  => 'required',
+        ]);
+
+        Toast::warning('Validation Success');
     }
 }

@@ -56,10 +56,10 @@ class RelationController extends Controller
         Model $model,
         string $name,
         string $key,
-        string $search = null,
+        ?string $search = null,
         ?array $scope = [],
-        string $append = null,
-        array $searchColumns = null,
+        ?string $append = null,
+        ?array $searchColumns = null,
         ?int $chunk = 10
     ) {
         if ($scope !== null) {
@@ -87,6 +87,19 @@ class RelationController extends Controller
         return $model
             ->limit($chunk)
             ->get()
-            ->pluck($append ?? $name, $key);
+            ->mapWithKeys(function ($item) use ($append, $key, $name) {
+                $resultKey = $item->$key;
+
+                $value = $item->$append ?? $item->$name;
+
+                if ($resultKey instanceof \UnitEnum) {
+                    $resultKey = $resultKey->value;
+                }
+                if ($value instanceof \UnitEnum) {
+                    $value = $value->value;
+                }
+
+                return [$resultKey => $value];
+            });
     }
 }

@@ -45,7 +45,7 @@ class DateTimer extends Field
     protected $attributes = [
         'class'                                 => 'form-control',
         'data-datetime-enable-time'             => 'false',
-        'data-datetime-time-24hr'               => 'false',
+        'data-datetime-time_24hr'               => 'false',
         'data-datetime-allow-input'             => 'false',
         'data-datetime-date-format'             => 'Y-m-d H:i:S',
         'data-datetime-no-calendar'             => 'false',
@@ -59,6 +59,7 @@ class DateTimer extends Field
         'data-datetime-show-months'             => 1,
         'allowEmpty'                            => false,
         'placeholder'                           => 'Select Date...',
+        'quickDates'                            => [],
     ];
 
     /**
@@ -86,7 +87,7 @@ class DateTimer extends Field
         'tabindex',
         'value',
         'data-datetime-enable-time',
-        'data-datetime-time-24hr',
+        'data-datetime-time_24hr',
         'data-datetime-allow-input',
         'data-datetime-date-format',
         'data-datetime-no-calendar',
@@ -116,7 +117,7 @@ class DateTimer extends Field
      */
     public function format24hr(bool $time = true): self
     {
-        $this->set('data-datetime-time-24hr', var_export($time, true));
+        $this->set('data-datetime-time_24hr', var_export($time, true));
 
         return $this;
     }
@@ -151,7 +152,7 @@ class DateTimer extends Field
      *
      * @return $this
      */
-    public function serverFormat(string $format = null): self
+    public function serverFormat(?string $format = null): self
     {
         return $this->addBeforeRender(function () use ($format) {
             $value = $this->get('value');
@@ -373,6 +374,47 @@ class DateTimer extends Field
     public function position(string $vertical = 'auto', string $horizontal = 'auto'): self
     {
         $this->set('data-datetime-position', $vertical.' '.$horizontal);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function range(): self
+    {
+        $this->set('data-datetime-mode', 'range');
+
+        return $this;
+    }
+
+    public function multiple(): self
+    {
+        $this->set('data-datetime-mode', 'multiple')
+            ->addBeforeRender(function () {
+                $this->set('data-datetime-default-date', json_encode($this->attributes['value']));
+                $this->attributes['value'] = null;
+            });
+
+        return $this;
+    }
+
+    /**
+     * Set quick date options for selection near an input field.
+     *
+     * @param array $presets An array of preset date values
+     *
+     * @return $this
+     */
+    public function withQuickDates(array $presets): self
+    {
+        $formattedPresets = collect($presets)
+            ->map(fn ($value) => collect($value))
+            ->map
+            ->map(fn ($value) => Carbon::parse($value)->format($this->attributes['data-datetime-date-format']))
+            ->all();
+
+        $this->attributes['quickDates'] = $formattedPresets;
 
         return $this;
     }

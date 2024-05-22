@@ -32,14 +32,14 @@ class TimeCollection extends Collection
      *
      * @return array
      */
-    public function toChart(string $name, \Closure $closure = null): array
+    public function toChart(string $name, ?\Closure $closure = null): array
     {
         $closure = $closure ?? static fn ($label) => $label;
 
         return [
-            'name'   => $name,
-            'labels' => $this->pluck('label')->map($closure)->toArray(),
-            'values' => $this->pluck('value')->toArray(),
+            'name'    => $name,
+            'labels'  => $this->pluck('label')->map($closure)->toArray(),
+            'values'  => $this->pluck('value')->toArray(),
         ];
     }
 

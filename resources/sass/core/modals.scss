@@ -15,9 +15,6 @@
     p {
       color: #8b91a0;
     }
-    .btn-close {
-      margin: 0 !important;
-    }
   }
   .modal-body {
     box-shadow: none;
@@ -155,6 +152,21 @@
       }
     }
   }
+
+  .modal-placeholder {
+    display: none;
+  }
+
+  &.modal-loading {
+    .modal-placeholder{
+      display: block;
+      opacity: 1;
+    }
+
+    .modal-header, .modal-body, .modal-footer {
+      display: none;
+    }
+  }
 }
 
 .fill-in-modal {
@@ -215,19 +227,4 @@
 		width: auto;
 		margin: 30px auto;
 	}
-
-    .modal-placeholder {
-        display: none;
-    }
-
-    &.modal-loading {
-         .modal-placeholder{
-           display: block;
-           opacity: 1;
-         }
-
-        .modal-header, .modal-body, .modal-footer {
-            display: none;
-        }
-    }
 }

@@ -145,7 +145,7 @@
     "Upload file": "Загрузить файл",
     "Upload image from your computer:": "Загрузить изображение с вашего компьютера:",
     "URL": "URL-адрес",
-    "User Management": "Пользователь",
+    "User Management": "Управление пользователями",
     "User was removed": "Пользователь был удален",
     "User was saved.": "Пользователь был сохранен.",
     "Users": "Пользователи",
@@ -174,5 +174,7 @@
     "No results found for your current filters": "Для ваших текущих фильтров не найдено результатов",
     "There are no objects currently displayed": "В настоящее время нет отображаемых объектов",
     "Try adjusting your filter settings or removing it altogether to see more data": "Попробуйте изменить настройки фильтра или удалить их совсем, чтобы увидеть больше данных",
-    "Import or create objects, or check back later for updates": "Импортируйте или создайте объекты, или проверьте обновления позже"
+    "Import or create objects, or check back later for updates": "Импортируйте или создайте объекты, или проверьте обновления позже",
+    "Sorting was successful.": "Сортировка прошла успешно.",
+    "Sorting failed. Please try again.": "Сортировка не удалась. Пожалуйста, попробуйте ещё раз."
 }

@@ -17,7 +17,7 @@ export default class extends ApplicationController {
 
         const configsAttributes = {
             enableTime: 'enable-time',
-            time_24hr: 'time-24hr',
+            time_24hr: 'time_24hr',
             allowInput: 'allow-input',
             dateFormat: 'date-format',
             noCalendar: 'no-calendar',
@@ -35,6 +35,8 @@ export default class extends ApplicationController {
             disable: 'disable',
             maxDate: 'max-date',
             minDate: 'min-date',
+            mode: "mode",
+            defaultDate: "default-date",
         };
 
         const config = {
@@ -61,6 +63,15 @@ export default class extends ApplicationController {
         });
 
         this.fp = flatpickr(this.element.querySelector('input'), config);
+    }
+
+    /**
+     *
+     * @param event
+     */
+    setValue(event) {
+        const value = JSON.parse(event.target.dataset.value);
+        this.fp.setDate(value, true);
     }
 
     /**

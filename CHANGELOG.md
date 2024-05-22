@@ -5,6 +5,226 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.23.1 - 2024-05-04
+
+### Fixed
+- Allow events AutoDiscovery in Laravel 11 [#2829](https://github.com/orchidsoftware/platform/pull/2829) [#2828](https://github.com/orchidsoftware/platform/issues/2828)
+
+## 14.23.0 - 2024-04-23
+
+### Added
+- Possibility to change 'Add row' label for matrix field [#2824](https://github.com/orchidsoftware/platform/pull/2824)
+- Config for `Prefetching Links on Hover`
+
+## 14.22.1 - 2024-04-20
+
+### Fixed
+- Custom path to composer vendor directory
+
+## 14.22.0 - 2024-04-14
+
+### Added
+- `Text` component for `Cell`
+
+### Changed
+- Popover trigger to hover/active
+- Improved component rendering method with backward compatibility
+
+### Fixed
+- Trim profile name/description
+
+## 14.21.1 - 2024-03-25
+
+### Fixed
+- Zero value filtering in parameters for `Button` [#2818](https://github.com/orchidsoftware/platform/issues/2818)
+- Clear input after select item in relation or select fields [#2815](https://github.com/orchidsoftware/platform/pull/2815) [#2797](https://github.com/orchidsoftware/platform/pull/2797)
+
+## 14.21.0 - 2024-03-19
+
+### Added
+- Support Laravel 11.x
+
+## 14.20.0 - 2024-03-19
+
+### Added
+- New `range`, `multiple` and `withQuickDates` methods for `DateTimer` field
+
+### Changed 
+- Improve multi lines horizon forms
+- Improve example fields
+
+### Fixed
+- Overflow `select` when usage matrix field
+
+## 14.19.0 - 2024-02-26
+
+### Changed
+- Updated `@hotwired/turbo` package to version 8.x
+
+### Fixed
+- Color palette of pagination elements and popovers.
+
+## 14.18.1 - 2024-02-21
+
+### Fixed
+- Asynchronous\Pending modal windows do not send screen `_state`
+
+## 14.18.0 - 2024-01-18
+
+### Changed
+- Boostrap, node-sass versions and other dependencies
+
+### Fixed
+- Change the default value for metrics layout to be compatible with modals [#2787](https://github.com/orchidsoftware/platform/pull/2787)
+
+## 14.17.1 - 2023-12-30
+
+### Added
+- Option to preserve original attachment type when using cropper field [#2779](https://github.com/orchidsoftware/platform/pull/2779)
+- Added accordion arrow transformation animation
+
+### Changed 
+- Changed the definition of the selected value for `Select` [#2782](https://github.com/orchidsoftware/platform/issues/2782)
+- Remove margin for welcome screen
+- Change `Cropper` validation message
+
+## 14.17.0 - 2023-12-20
+
+### Added
+- Option to customize display name for `Select` based on enums [#2776](https://github.com/orchidsoftware/platform/pull/2776)
+
+### Changed
+- Enforce non-null `@section` values to prevent dangling output buffers [#2764](https://github.com/orchidsoftware/platform/pull/2764)
+- `Block` dont output empty title and description [#2765](https://github.com/orchidsoftware/platform/pull/2765)
+- Not strict verification for the value in `Select` [#2769](https://github.com/orchidsoftware/platform/pull/2769)
+- Revert verification for the prevention of re-sending [#2773](https://github.com/orchidsoftware/platform/pull/2773)
+- Do not establish the sensitive properties of `fillable` by default
+
+### Fixed 
+- Hide total row when empty [#2770](https://github.com/orchidsoftware/platform/pull/2770)
+- Work method `format24hr()` for `DateTimer` [#2742](https://github.com/orchidsoftware/platform/issues/2742) [#2775](https://github.com/orchidsoftware/platform/pull/2775)
+- Empty space at the bottom on screens less than 1200px [#2757](https://github.com/orchidsoftware/platform/issues/2757)
+
+## 14.16.0 - 2023-11-11
+
+### Added
+- Add `style` and css `class` methods for TD [#2729](https://github.com/orchidsoftware/platform/pull/2729)
+
+### Changed
+- Remove escaped title/description for screen [#2755](https://github.com/orchidsoftware/platform/issues/2755)
+- Changed type model class to interface [#2723](https://github.com/orchidsoftware/platform/issues/2723)
+
+### Fixed
+- Extract state when state is null [#2760](https://github.com/orchidsoftware/platform/pull/2760)
+- Missing types for `NumberRange` field [#2750](https://github.com/orchidsoftware/platform/pull/2750)
+
+## 14.15.0 - 2023-10-22
+
+### Changed
+- Corrected Polish translation [#2730](https://github.com/orchidsoftware/platform/pull/2730)
+- Enhanced Orchid service provider for packages
+- Enabled screen save state for backward navigation by default
+- Display `0` or `false` values for Labels
+
+
+## 14.14.0 - 2023-09-22
+
+### Changed
+- Revert `percent` value from `Charts`
+
+## 14.13.0 - 2023-09-21
+
+### Changed
+- Added `percent` value from `Charts`
+
+## 14.12.2 - 2023-09-20
+
+### Fixed
+- Overflow icons on the main menu 
+- Menu height on mobile
+
+## 14.12.1 - 2023-09-20
+
+### Added
+- `isImpersonating` alias method for `Impersonation` class 
+- Tests from `Sortable` feature
+
+### Fixed
+- Overflow icons on the main menu
+
+## 14.12.0 - 2023-09-14
+
+### Added
+- New `Sortable` layout and `Sortable` helpers trait
+- Support `Enum` for `relation` field [#2711](https://github.com/orchidsoftware/platform/pull/2711)
+
+## 14.11.0 - 2023-09-10
+
+### Added
+- Translation Polish language [#2708](https://github.com/orchidsoftware/platform/pull/2708)
+
+### Fixed
+- Remove "\r\n" `Quill` editor when usage code block
+
+## 14.10.0 - 2023-09-06
+
+### Added
+- Support `enum` feature from `Select` field [#2699](https://github.com/orchidsoftware/platform/pull/2699)
+
+### Changed
+- Improve small legend template
+
+### Fixed
+- Remove overview on form tag [#2702](https://github.com/orchidsoftware/platform/issues/2702)
+
+## 14.9.1 - 2023-08-30
+
+### Fixed 
+- Implemented support for validating redirect requests, resolving the lack of a mechanism to verify them previously
+
+## 14.9.0 - 2023-08-29
+
+### Added
+- Early implementation of `Attach` field.
+
+### Changed
+- Renamed translation from `zh` to `zh_CN` to improve consistency. ([#2692](https://github.com/orchidsoftware/platform/pull/2692))
+- Updated configuration to address the image display issue. ([#2701](https://github.com/orchidsoftware/platform/issues/2701))
+
+### Fixed
+- Resolved the shadow issue in the `Block` layout.
+
+## 14.8.1 - 2023-08-04
+
+### Changed
+- Removed `null` parameters from `Actions`
+
+### Fixed
+- Hiding modal placeholder on screen size <768px [#2686](https://github.com/orchidsoftware/platform/pull/2686)
+
+
+## 14.8.0 - 2023-07-29
+
+### Added
+- Make accordion items stay open when another item is opened. [#2677](https://github.com/orchidsoftware/platform/pull/2677)
+
+### Changed
+- Improving Filter and support pattern parameters [#2684](https://github.com/orchidsoftware/platform/pull/2684)
+
+### Fixed
+- Missing `bs` in popover data attributes [#2667](https://github.com/orchidsoftware/platform/pull/2667)
+
+## 14.7.0 - 2023-07-28
+
+### Added
+- Added japanese translation
+
+### Changed
+- Update arabic translation
+
+### Fixed
+- Display of markdown editor in tabs
+
 ## 14.6.0 - 2023-07-12
 
 ### Added 

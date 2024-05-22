@@ -10,7 +10,7 @@ use Orchid\Screen\Contracts\Personable;
 use Orchid\Screen\Contracts\Searchable;
 use Orchid\Support\Presenter;
 
-class UserPresenter extends Presenter implements Searchable, Personable
+class UserPresenter extends Presenter implements Personable, Searchable
 {
     /**
      * Returns the label for this presenter, which is used in the UI to identify it.
@@ -73,7 +73,7 @@ class UserPresenter extends Presenter implements Searchable, Personable
      * Returns a Laravel Scout builder object that can be used to search for matching users.
      * This method is used by the search functionality to retrieve a list of matching results.
      */
-    public function searchQuery(string $query = null): Builder
+    public function searchQuery(?string $query = null): Builder
     {
         return $this->entity->search($query);
     }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Access;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 
 class Impersonation
@@ -16,11 +15,11 @@ class Impersonation
     /**
      * Changes the current authenticated user to the given user.
      *
-     * @param User $user The user to switch to
+     * @param Authenticatable $user The user to switch to
      *
      * @return void
      */
-    public static function loginAs(User $user): void
+    public static function loginAs(Authenticatable $user): void
     {
         // Store the original authenticated user ID in the session if it's not already there
         if (! session()->has(self::SESSION_NAME)) {
@@ -28,7 +27,7 @@ class Impersonation
         }
 
         // Log in the given user
-        self::getAuth()->loginUsingId($user->getKey());
+        self::getAuth()->loginUsingId($user->getAuthIdentifier());
     }
 
     /**
@@ -57,6 +56,18 @@ class Impersonation
 
         // Check if the original authenticated user ID has been stored in the session
         return session()->has(self::SESSION_NAME);
+    }
+
+    /**
+     * Check if the current user is impersonated.
+     *
+     * @alias static bool isSwitch()
+     *
+     * @return bool
+     */
+    public static function isImpersonating(): bool
+    {
+        return self::isSwitch();
     }
 
     /**

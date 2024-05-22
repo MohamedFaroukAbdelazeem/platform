@@ -16,15 +16,17 @@ use Illuminate\Support\Str;
 use Orchid\Attachment\MimeTypes;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
+use Orchid\Platform\Concerns\Sortable;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
+use Orchid\Screen\AsSource;
 
 /**
  * Class Attachment.
  */
 class Attachment extends Model
 {
-    use Filterable, HasFactory;
+    use AsSource, Filterable, HasFactory, Sortable;
 
     /**
      * @var array
@@ -84,6 +86,16 @@ class Attachment extends Model
         'group',
     ];
 
+    /**
+     * Get the column name for sorting.
+     *
+     * @return string
+     */
+    public function getSortColumnName(): string
+    {
+        return 'sort';
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(Dashboard::model(User::class));
@@ -92,7 +104,7 @@ class Attachment extends Model
     /**
      * Return the address by which you can access the file.
      */
-    public function url(string $default = null): ?string
+    public function url(?string $default = null): ?string
     {
         /** @var Filesystem|Cloud $disk */
         $disk = Storage::disk($this->getAttribute('disk'));

@@ -14,11 +14,13 @@
          data-cropper-max-file-size="{{ $maxFileSize }}"
          data-cropper-groups="{{ $attributes['groups'] }}"
          data-cropper-path="{{ $attributes['path'] ?? '' }}"
+         data-cropper-keep-original-type-value="{{ $keepOriginalType }}"
+         data-cropper-max-size-message-value="{{ __($maxSizeValidateMessage) }}"
     >
         <div class="border-dashed text-end p-3 cropper-actions">
 
             <div class="fields-cropper-container">
-                <img src="#" class="cropper-preview img-fluid img-full mb-2 border" alt="">
+                <img src="#" class="cropper-preview img-fluid img-full mb-2 border" alt="" style="--cropper-width: {{ $width }}; --cropper-height: {{ $height }};">
             </div>
 
             <span class="mt-1 float-start">{{ __('Upload image from your computer:') }}</span>
